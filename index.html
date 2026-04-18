@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whistler Cinematics | Elite Drone Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { 
+            background-color: #05070a; 
+            color: #ffffff; 
+            font-family: 'Montserrat', sans-serif; 
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(rgba(5, 7, 10, 0.6), rgba(5, 7, 10, 0.6)), 
+                        url('https://images.unsplash.com/photo-1590255464864-2054b31761aa?q=80&w=1170&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Fix for the "squished" text */
+        .hero-title {
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+        }
+        .glass { background: rgba(5, 7, 10, 0.8); backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body>
 
+    <nav class="fixed w-full z-50 glass border-b border-white/10">
+        <div class="flex justify-between items-center px-6 py-3 max-w-7xl mx-auto">
+            <img src="Whistler Cinematics Logo.png" alt="Whistler Cinematics Logo" class="h-8 md:h-10">
+            <div class="space-x-8 hidden md:flex font-semibold text-[11px] uppercase tracking-[0.2em]">
+                <a href="#about" class="hover:text-blue-400 transition">About</a>
+                <a href="#services" class="hover:text-blue-400 transition">Services</a>
+                <a href="#pricing" class="hover:text-blue-400 transition">Rates</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="hero-title text-4xl md:text-7xl font-extrabold uppercase mb-6">
+            Whistler <span class="text-blue-500">Cinematics</span>
+        </h1>
+        <p class="text-sm md:text-lg text-gray-300 max-w-2xl font-light tracking-[0.15em] uppercase">
+            Sea to Sky Drone Cinematography
+        </p>
+        <div class="mt-10">
+            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-sm text-xs font-bold uppercase tracking-[0.2em] transition">
+                Request Booking
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="py-24 max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-2xl font-extrabold uppercase mb-8 tracking-widest">The <span class="text-blue-500">Vision</span></h2>
+        <p class="text-gray-400 leading-relaxed text-lg font-light">
+            Based in Whistler, BC, we specialize in high-end aerial captures. From the peaks of the Blackcomb backcountry to the shores of Howe Sound, we provide professional 4K footage for creators and businesses.
+        </p>
+    </section>
+
+    <section id="pricing" class="py-24 bg-zinc-950 px-6 border-y border-white/5">
+        <div class="max-w-xl mx-auto text-center">
+            <h2 class="text-2xl font-extrabold mb-10 uppercase tracking-widest">Rates</h2>
+            <div class="bg-black border border-blue-500/20 p-12 rounded-sm shadow-2xl">
+                <div class="text-6xl font-extrabold my-4 tracking-tighter">$159<span class="text-lg text-blue-500 font-normal"> / hr CAD</span></div>
+                <p class="text-gray-400 mb-8 text-sm uppercase tracking-widest">Professional 4K Drone Operations</p>
+                <ul class="text-left space-y-4 mb-10 text-gray-300 text-sm">
+                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-3 text-blue-500"></i> High-Bitrate 4K Raw Video</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-3 text-blue-500"></i> Licensed & Insured Pilot</li>
+                    <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-3 text-blue-500"></i> Full Commercial Rights</li>
+                </ul>
+                <a href="#contact" class="block w-full py-4 bg-white text-black font-bold uppercase text-xs tracking-widest hover:bg-blue-500 hover:text-white transition">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-6 text-center">
+        <h2 class="text-2xl font-extrabold mb-6 uppercase tracking-widest">Connect</h2>
+        <p class="mb-4 text-gray-400 uppercase text-xs tracking-widest">Inquiries & Bookings</p>
+        <a href="mailto:hello@whistlercinematics.com" class="text-xl md:text-2xl font-semibold text-blue-500 hover:text-blue-400 transition">hello@whistlercinematics.com</a>
+    </section>
+
+    <footer class="py-16 bg-black border-t border-white/10 text-center">
+        <div class="flex justify-center space-x-10 mb-10">
+            <a href="https://instagram.com/whistlercinematics" target="_blank" class="text-white hover:text-blue-500 transition transform hover:scale-110">
+                <i data-lucide="instagram" class="w-8 h-8"></i>
+            </a>
+            <a href="https://youtube.com/@whistlercinematics" target="_blank" class="text-white hover:text-blue-500 transition transform hover:scale-110">
+                <i data-lucide="youtube" class="w-8 h-8"></i>
+            </a>
+        </div>
+        <p class="text-sm text-white font-semibold uppercase tracking-[0.3em] opacity-90">
+            © 2026 WHISTLER CINEMATICS
+        </p>
+        <p class="text-[10px] text-gray-500 mt-2 uppercase tracking-widest">Sea to Sky Corridor, BC</p>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+</body>
+</html>
