@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whistler Cinematics | Elite Drone Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0a0a0a; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .accent-border { border-bottom: 2px solid #3b82f6; }
+    </style>
+</head>
+<body>
+
+    <nav class="flex justify-between items-center p-6 max-w-7xl mx-auto">
+        <img src="WC logo white nobg.jpg" alt="Whistler Cinematics Logo" class="h-12">
+        <div class="space-x-6 hidden md:flex">
+            <a href="#services" class="hover:text-blue-400 transition">Services</a>
+            <a href="#pricing" class="hover:text-blue-400 transition">Pricing</a>
+            <a href="https://www.youtube.com/@YourChannel" target="_blank" class="bg-white text-black px-4 py-2 rounded-full font-bold hover:bg-gray-200">Subscribe</a>
+        </div>
+    </nav>
+
+    <header class="hero-gradient h-[80vh] flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-4">
+            Sea to Sky <span class="text-blue-500">Perspective</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 max-w-2xl">
+            Professional 4K drone cinematography based in Whistler, BC. Capturing the wild from above.
+        </p>
+        <a href="#booking" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-bold transition transform hover:scale-105">
+            Book a Flight
+        </a>
+    </header>
+
+    <section id="pricing" class="py-20 bg-zinc-900 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 uppercase tracking-widest accent-border inline-block">Rates</h2>
+            <div class="bg-black border border-zinc-800 p-10 rounded-2xl shadow-2xl">
+                <h3 class="text-2xl mb-2">Standard Flight Package</h3>
+                <div class="text-6xl font-black my-6">$159 <span class="text-xl text-gray-500">/ hr CAD</span></div>
+                <ul class="text-gray-400 space-y-3 mb-8 text-left max-w-xs mx-auto">
+                    <li>✓ 4K UHD Raw Footage</li>
+                    <li>✓ Fully Insured Pilot</li>
+                    <li>✓ Whistler & Sea to Sky Region</li>
+                    <li>✓ Quick 48hr Turnaround</li>
+                </ul>
+                <button class="w-full py-4 bg-white text-black font-bold rounded-md hover:bg-gray-200">Request Booking</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-gray-600 border-t border-zinc-800">
+        <p>© 2026 Whistler Cinematics. Built for the mountains.</p>
+    </footer>
+
+</body>
+</html>
