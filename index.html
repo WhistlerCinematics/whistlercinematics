@@ -1,95 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whistler Cinematics | Elite Drone Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { background-color: #05070a; color: #ffffff; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
-        .hero-gradient {
-            background: linear-gradient(rgba(5, 7, 10, 0.5), rgba(5, 7, 10, 0.5)), 
-                        url('https://images.unsplash.com/photo-1590255464864-2054b31761aa?q=80&w=1170&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
-        .glass { background: rgba(5, 7, 10, 0.8); backdrop-filter: blur(10px); }
-        h1 { line-height: 1.1; letter-spacing: -0.01em; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whistler Cinematics</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+   RESET & VARIABLES
+───────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black:  #0a0a0a;
+  --dark:   #111111;
+  --card:   #181818;
+  --border: rgba(255,255,255,0.08);
+  --white:  #ffffff;
+  --off:    rgba(255,255,255,0.62);
+  --blue:   #2563FF;
+  --blue-h: #4A7FFF;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+img { display: block; }
+a { text-decoration: none; }
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 62px;
+  background: rgba(10,10,10,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.nav-logo { display: flex; align-items: center; }
+.nav-logo img { height: 34px; width: auto; }
+.nav-links { display: flex; gap: 2.4rem; list-style: none; }
+.nav-links a {
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.68);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 4px;
+}
+.nav-hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: #fff; border-radius: 2px;
+  transition: all 0.3s;
+}
+.nav-mobile {
+  display: none; position: fixed; top: 62px; left: 0; right: 0;
+  background: rgba(10,10,10,0.97); z-index: 299;
+  flex-direction: column; padding: 1.5rem 3rem; gap: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.75);
+  padding: 0.4rem 0;
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.62rem 1.4rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  cursor: pointer; border: none; border-radius: 2px;
+  transition: all 0.22s;
+}
+.btn-blue  { background: var(--blue); color: #fff; }
+.btn-blue:hover  { background: var(--blue-h); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); }
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+.btn-white { background: #fff; color: #0a0a0a; }
+.btn-white:hover { background: #e8e8e8; }
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 5.5rem; text-align: center; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1609180932733-d10f4b9a26da?w=1800&q=85') center/cover no-repeat;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.28) 0%,
+    rgba(0,0,0,0.52) 55%,
+    rgba(10,10,10,1) 100%);
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-wordmark {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; margin-bottom: 1.6rem;
+  animation: fadeUp 0.9s 0.15s both;
+}
+.hero-wordmark img { height: 52px; width: auto; }
+.hero-wordmark h1 {
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  font-weight: 900; letter-spacing: 0.07em; text-transform: uppercase;
+}
+.hero-btns {
+  display: flex; gap: 0.8rem; justify-content: center;
+  animation: fadeUp 0.9s 0.35s both;
+}
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+.about {
+  padding: 6rem 2rem;
+  text-align: center; max-width: 640px; margin: 0 auto;
+}
+.about h2 {
+  font-size: clamp(1.2rem, 2.8vw, 1.75rem);
+  font-weight: 900; letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 1.4rem;
+}
+.about h2 span { color: var(--blue-h); }
+.about p { font-size: 0.88rem; line-height: 1.9; color: var(--off); }
+
+/* ─────────────────────────────────────────
+   DIVIDER
+───────────────────────────────────────── */
+hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ─────────────────────────────────────────
+   OUR WORK — CAROUSEL
+───────────────────────────────────────── */
+.work { padding: 5rem 2rem; }
+.section-heading {
+  text-align: center;
+  font-size: 1.05rem; font-weight: 900;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+/* GRID (shown by default on desktop) */
+.work-grid-wrap { max-width: 860px; margin: 0 auto; }
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  gap: 8px; margin-bottom: 8px;
+}
+.work-item {
+  overflow: hidden; border-radius: 4px; background: var(--card);
+  position: relative; cursor: pointer;
+}
+.work-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.work-item:hover img { transform: scale(1.05); }
+.work-item.tall { grid-row: span 2; }
+.work-item-wide { height: 240px; overflow: hidden; border-radius: 4px; background: var(--card); cursor: pointer; }
+.work-item-wide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.work-item-wide:hover img { transform: scale(1.04); }
+
+/* CAROUSEL (hidden on desktop, shown on mobile) */
+.carousel-wrap { display: none; position: relative; overflow: hidden; border-radius: 4px; }
+.carousel-track { display: flex; transition: transform 0.42s cubic-bezier(.4,0,.2,1); }
+.carousel-slide { min-width: 100%; height: 260px; flex-shrink: 0; }
+.carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.55); color: #fff; border: none;
+  width: 38px; height: 38px; border-radius: 50%;
+  font-size: 1.1rem; cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.carousel-btn:hover { background: rgba(37,99,255,0.75); }
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
+.carousel-dots button {
+  width: 8px; height: 8px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,0.28); cursor: pointer; padding: 0;
+  transition: background 0.2s;
+}
+.carousel-dots button.active { background: #fff; }
+
+/* ─────────────────────────────────────────
+   SERVICES
+───────────────────────────────────────── */
+.services { padding: 5rem 2rem; }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px; max-width: 860px; margin: 0 auto;
+}
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 2rem 1.7rem;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.service-card:hover { border-color: rgba(37,99,255,0.45); transform: translateY(-3px); }
+.sc-icon {
+  width: 44px; height: 44px;
+  background: rgba(37,99,255,0.12); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.sc-icon svg { width: 22px; height: 22px; stroke: #5B8EFF; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.service-card h3 {
+  font-size: 0.82rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem;
+}
+.service-card p { font-size: 0.78rem; color: var(--off); line-height: 1.85; margin-bottom: 1.2rem; }
+.service-card .price { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; color: #5B8EFF; }
+
+/* ─────────────────────────────────────────
+   LET'S FLY CTA
+───────────────────────────────────────── */
+.cta-section {
+  padding: 5.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cta-section h2 {
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 900; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.8rem;
+}
+.cta-section p { font-size: 0.85rem; color: var(--off); margin-bottom: 0.6rem; }
+.cta-section .email-link {
+  color: #5B8EFF; font-size: 0.88rem; font-weight: 600;
+}
+.cta-section .email-link:hover { color: #fff; }
+
+/* ─────────────────────────────────────────
+   FOLLOW OUR JOURNEY
+───────────────────────────────────────── */
+.journey { padding: 5rem 2rem; }
+.journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px; max-width: 860px; margin: 0 auto 2rem;
+}
+.journey-item {
+  aspect-ratio: 1/1; overflow: hidden; border-radius: 4px;
+  background: var(--card); position: relative; cursor: pointer;
+}
+.journey-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.45s ease; }
+.journey-item:hover img { transform: scale(1.07); }
+.journey-item .j-overlay {
+  position: absolute; inset: 0;
+  background: rgba(37,99,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.journey-item:hover .j-overlay { opacity: 1; }
+.journey-item .j-overlay svg { width: 26px; height: 26px; fill: #fff; }
+
+.journey-socials {
+  display: flex; gap: 1.4rem; justify-content: center; align-items: center;
+}
+.journey-socials a {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--off); transition: color 0.2s;
+}
+.journey-socials a:hover { color: #fff; }
+.journey-socials svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2.2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.32); }
+.footer-icons { display: flex; gap: 1.2rem; align-items: center; }
+.footer-icons a { color: rgba(255,255,255,0.38); transition: color 0.2s; }
+.footer-icons a:hover { color: #fff; }
+.footer-icons svg { width: 17px; height: 17px; fill: currentColor; display: block; }
+
+/* ─────────────────────────────────────────
+   BOOKING MODAL
+───────────────────────────────────────── */
+.modal-backdrop {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-backdrop.open { display: flex; }
+.modal {
+  background: #141414; border: 1px solid var(--border);
+  border-radius: 8px; width: 100%; max-width: 500px;
+  padding: 2.2rem; position: relative;
+  animation: modalIn 0.3s ease;
+  max-height: 90vh; overflow-y: auto;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-close {
+  position: absolute; top: 1.1rem; right: 1.2rem;
+  background: none; border: none; color: var(--off);
+  font-size: 1.4rem; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: #fff; }
+.modal h2 {
+  font-size: 1rem; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 0.4rem;
+}
+.modal .modal-sub { font-size: 0.75rem; color: var(--off); margin-bottom: 1.8rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.9rem; }
+.field label {
+  font-size: 0.62rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: #5B8EFF;
+}
+.field input, .field select, .field textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); border-radius: 3px;
+  padding: 0.65rem 0.85rem;
+  color: #fff; font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem; outline: none; width: 100%;
+  transition: border-color 0.2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); }
+.field select option { background: #141414; }
+.field textarea { resize: vertical; min-height: 90px; }
+.form-success {
+  display: none; margin-top: 0.9rem; padding: 0.9rem 1rem;
+  background: rgba(37,99,255,0.1); border: 1px solid var(--blue);
+  border-radius: 3px; font-size: 0.78rem; color: #5B8EFF; font-weight: 600;
+}
+
+/* ─────────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.72s ease, transform 0.72s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 760px) {
+  nav { padding: 0 1.4rem; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .work-grid, .work-grid-wrap > .work-item-wide { display: none; }
+  .carousel-wrap { display: block; }
+  .services-grid { grid-template-columns: 1fr; }
+  .journey-grid { grid-template-columns: repeat(2,1fr); }
+  footer { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-wordmark h1 { font-size: 1.3rem; }
+  .hero-wordmark img { height: 38px; }
+}
+</style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 glass border-b border-white/10">
-        <div class="flex justify-center items-center px-6 py-4 max-w-7xl mx-auto">
-            <div class="space-x-10 font-bold text-xs uppercase tracking-wider">
-                <a href="#about" class="hover:text-blue-500 transition">About</a>
-                <a href="#services" class="hover:text-blue-500 transition">Services</a>
-                <a href="#pricing" class="hover:text-blue-500 transition">Rates</a>
-                <a href="#contact" class="hover:text-blue-500 transition">Contact</a>
-            </div>
-        </div>
-    </nav>
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="WClogo.png" alt="Whistler Cinematics"
+      onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/your-repo/main/WClogo.png'">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#work" onclick="closeMobile()">Our Work</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
 
-    <header class="hero-gradient h-screen flex flex-col justify-center items-center text-center px-4">
-        <img src="Whistler Cinematics Logo.png" alt="Whistler Cinematics Logo" class="w-[180px] md:w-[260px] h-auto mb-6 drop-shadow-xl">
-        
-        <h1 class="text-4xl md:text-6xl font-black uppercase mb-4">
-            Whistler <span class="text-blue-500">Cinematics</span>
-        </h1>
-        <p class="text-base md:text-lg text-gray-200 max-w-2xl font-medium uppercase tracking-wide">
-            Sea to Sky Drone Cinematography
-        </p>
-        <div class="mt-8">
-            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-sm font-bold uppercase text-xs transition-all shadow-lg shadow-blue-500/10">
-                Request Booking
-            </a>
-        </div>
-    </header>
+<!-- ══════════════════════ HERO ══════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-wordmark">
+      <img src="WClogo.png" alt="Whistler Cinematics logo">
+      <h1>Whistler Cinematics</h1>
+    </div>
+    <div class="hero-btns">
+      <button class="btn btn-blue" onclick="openModal()">Request Booking</button>
+      <a href="#work" class="btn btn-outline">View Work</a>
+    </div>
+  </div>
+</section>
 
-    <section id="about" class="py-20 max-w-3xl mx-auto px-6 text-center border-b border-white/5">
-        <h2 class="text-2xl font-black uppercase mb-6">The Vision</h2>
-        <p class="text-gray-400 leading-relaxed text-base font-normal">
-            Based in Whistler, BC, we specialize in high-end aerial captures. From the peaks of the Blackcomb backcountry to the shores of Howe Sound, we provide professional 4K footage for creators and businesses.
-        </p>
-    </section>
+<!-- ══════════════════════ ABOUT ══════════════════════ -->
+<section class="about reveal" id="about">
+  <h2>Small Team, <span>Big Vision</span></h2>
+  <p>Based in the small town of Whistler, we're a growing drone cinematography business dedicated to showcasing the stunning beauty of British Columbia. Whether it's for social media content or private bookings, we bring professional high quality aerial imagery to any project.</p>
+</section>
 
-    <section id="pricing" class="py-20 bg-zinc-950 px-6">
-        <div class="max-w-md mx-auto text-center">
-            <h2 class="text-2xl font-black mb-8 uppercase">Rates</h2>
-            <div class="bg-black border border-blue-600/20 p-8 rounded-sm">
-                <div class="text-5xl font-black my-2">$159<span class="text-base text-blue-500 font-bold"> / hr CAD</span></div>
-                <p class="text-gray-500 mb-6 text-xs font-bold uppercase">Professional 4K Operations</p>
-                <ul class="text-left space-y-3 mb-8 text-gray-300 text-sm">
-                    <li class="flex items-center"><i data-lucide="video" class="w-4 h-4 mr-3 text-blue-500"></i> 4K Raw Video Footage</li>
-                    <li class="flex items-center"><i data-lucide="shield-check" class="w-4 h-4 mr-3 text-blue-500"></i> Licensed & Insured Pilot</li>
-                    <li class="flex items-center"><i data-lucide="file-check" class="w-4 h-4 mr-3 text-blue-500"></i> Commercial Usage Rights</li>
-                </ul>
-                <a href="#contact" class="block w-full py-4 bg-blue-600 text-white font-bold uppercase text-xs hover:bg-blue-500 transition">Book Session</a>
-            </div>
-        </div>
-    </section>
+<hr class="divider">
 
-    <section id="contact" class="py-20 px-6 text-center">
-        <h2 class="text-2xl font-black mb-6 uppercase">Let's Fly</h2>
-        <a href="mailto:hello@whistlercinematics.com" class="text-xl md:text-2xl font-bold text-blue-500 hover:text-blue-400 transition underline underline-offset-4">hello@whistlercinematics.com</a>
-    </section>
+<!-- ══════════════════════ OUR WORK ══════════════════════ -->
+<section class="work reveal" id="work">
+  <h2 class="section-heading">Our Work</h2>
 
-    <footer class="py-12 bg-black border-t border-white/10 text-center">
-        <div class="flex justify-center space-x-10 mb-8">
-            <a href="https://instagram.com/whistlercinematics" target="_blank" class="text-white hover:text-blue-500 transition transform hover:scale-110">
-                <i data-lucide="instagram" class="w-8 h-8"></i>
-            </a>
-            <a href="https://youtube.com/@whistlercinematics" target="_blank" class="text-white hover:text-blue-500 transition transform hover:scale-110">
-                <i data-lucide="youtube" class="w-8 h-8"></i>
-            </a>
-        </div>
-        <p class="text-lg text-white font-bold uppercase mb-1">
-            © 2026 Whistler Cinematics
-        </p>
-        <p class="text-xs text-gray-500 font-medium uppercase tracking-widest">Sea to Sky Corridor, BC</p>
-    </footer>
+  <!-- Desktop grid -->
+  <div class="work-grid-wrap">
+    <div class="work-grid">
+      <div class="work-item tall">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=85" alt="Mountain peak aerial">
+      </div>
+      <div class="work-item">
+        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=700&q=85" alt="Whistler landscape">
+      </div>
+      <div class="work-item">
+        <img src="https://images.unsplash.com/photo-1609180932733-d10f4b9a26da?w=700&q=85" alt="Whistler aerial">
+      </div>
+      <div class="work-item">
+        <img src="https://images.unsplash.com/photo-1508444845599-5c89863b1c44?w=700&q=85" alt="Drone mountain shot">
+      </div>
+      <div class="work-item">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=85" alt="Mountain peaks">
+      </div>
+    </div>
+    <div class="work-item-wide">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1400&q=85" alt="Valley aerial panorama">
+    </div>
+  </div>
 
-    <script>lucide.createIcons();</script>
+  <!-- Mobile carousel -->
+  <div class="carousel-wrap" id="carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=85" alt="Mountain peak aerial"></div>
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=900&q=85" alt="Whistler landscape"></div>
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1609180932733-d10f4b9a26da?w=900&q=85" alt="Whistler aerial"></div>
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1508444845599-5c89863b1c44?w=900&q=85" alt="Drone mountain shot"></div>
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=85" alt="Mountain peaks"></div>
+      <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=85" alt="Valley aerial panorama"></div>
+    </div>
+    <button class="carousel-btn prev" id="carPrev" aria-label="Previous">&#8249;</button>
+    <button class="carousel-btn next" id="carNext" aria-label="Next">&#8250;</button>
+  </div>
+  <div class="carousel-dots" id="carDots"></div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════ SERVICES ══════════════════════ -->
+<section class="services reveal" id="services">
+  <h2 class="section-heading">Services</h2>
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-d1">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+      </div>
+      <h3>Drone Footage</h3>
+      <p>Cinematic 4K aerial footage of Whistler's peaks, trails, and valleys. Transport Canada certified pilot, 3-axis gimbal stabilization, and RAW + graded delivery.</p>
+      <p class="price">FROM $450 / HOUR</p>
+    </div>
+
+    <div class="service-card reveal reveal-d2">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+      </div>
+      <h3>Social Media Content</h3>
+      <p>Scroll-stopping short-form video for Instagram Reels, TikTok, and YouTube Shorts. Fully edited, color-graded, and optimized for each platform.</p>
+      <p class="price">FROM $300 / SESSION</p>
+    </div>
+
+    <div class="service-card reveal reveal-d3">
+      <div class="sc-icon">
+        <svg viewBox="0 0 24 24"><path d="M15 10l4.6-2.1A1 1 0 0121 8.9v6.2a1 1 0 01-1.4.9L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      </div>
+      <h3>Brand Campaigns</h3>
+      <p>Full-day productions built around your brand identity. Perfect for tourism, hospitality, outdoor lifestyle, and adventure companies across the Sea to Sky corridor.</p>
+      <p class="price">FROM $800 / DAY</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════ LET'S FLY ══════════════════════ -->
+<section class="cta-section reveal" id="contact">
+  <h2>Let's Fly</h2>
+  <p>Ready to book your Sea to Sky session? Email us or follow our journey.</p>
+  <a href="mailto:whistlercinematics@gmail.com" class="email-link">whistlercinematics@gmail.com</a>
+  <br><br>
+  <button class="btn btn-blue" onclick="openModal()">Request Booking</button>
+</section>
+
+<!-- ══════════════════════ FOLLOW OUR JOURNEY ══════════════════════ -->
+<section class="journey reveal" id="journey">
+  <h2 class="section-heading">Follow Our Journey</h2>
+  <div class="journey-grid">
+    <a class="journey-item" href="https://instagram.com" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=500&q=80" alt="Journey 1">
+      <div class="j-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </a>
+    <a class="journey-item" href="https://instagram.com" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&q=80" alt="Journey 2">
+      <div class="j-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+    </a>
+    <a class="journey-item" href="https://youtube.com" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=500&q=80" alt="Journey 3">
+      <div class="j-overlay"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+    </a>
+    <a class="journey-item" href="https://youtube.com" target="_blank" rel="noopener">
+      <img src="https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=500&q=80" alt="Journey 4">
+      <div class="j-overlay"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+    </a>
+  </div>
+  <div class="journey-socials">
+    <a href="https://instagram.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <p class="footer-copy">&copy; 2026 Whistler Cinematics</p>
+  <div class="footer-icons">
+    <a href="https://x.com" target="_blank" rel="noopener" aria-label="X">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- ══════════════════════ BOOKING MODAL ══════════════════════ -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="handleBackdropClick(event)">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    <h2 id="modalTitle">Request Booking</h2>
+    <p class="modal-sub">Fill in your details and we'll get back to you within 24 hours.</p>
+    <form id="bookingForm" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <div class="field"><label>First Name</label><input type="text" placeholder="Alex" required></div>
+        <div class="field"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+      </div>
+      <div class="field"><label>Email</label><input type="email" placeholder="alex@example.com" required></div>
+      <div class="field"><label>Phone (optional)</label><input type="tel" placeholder="+1 604 555 0100"></div>
+      <div class="field">
+        <label>Service</label>
+        <select required>
+          <option value="">— Choose a service —</option>
+          <option>Drone Footage</option>
+          <option>Social Media Content</option>
+          <option>Brand Campaign</option>
+          <option>Custom Package</option>
+        </select>
+      </div>
+      <div class="field"><label>Preferred Date</label><input type="date"></div>
+      <div class="field"><label>Message</label><textarea placeholder="Tell us about your project, location, and any specific shots you have in mind…"></textarea></div>
+      <button type="submit" class="btn btn-blue" style="width:100%;margin-top:0.3rem;">Send Request</button>
+      <div class="form-success" id="formSuccess">&#10003;&nbsp; Request sent! We'll be in touch within 24 hours.</div>
+    </form>
+  </div>
+</div>
+
+<script>
+/* ── MOBILE NAV ── */
+const hamburger = document.getElementById('hamburger');
+const navMobile = document.getElementById('navMobile');
+hamburger.addEventListener('click', () => navMobile.classList.toggle('open'));
+function closeMobile() { navMobile.classList.remove('open'); }
+
+/* ── SCROLL REVEAL ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── CAROUSEL ── */
+(function() {
+  const track  = document.getElementById('carouselTrack');
+  const slides = track ? track.querySelectorAll('.carousel-slide') : [];
+  const dotsWrap = document.getElementById('carDots');
+  if (!slides.length) return;
+  let current = 0, autoId;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    if (i === 0) b.classList.add('active');
+    b.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(b);
+  });
+
+  function goTo(n) {
+    current = (n + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('button').forEach((b,i) => b.classList.toggle('active', i === current));
+  }
+
+  document.getElementById('carPrev').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  document.getElementById('carNext').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+  function startAuto() { autoId = setInterval(() => goTo(current + 1), 4000); }
+  function resetAuto() { clearInterval(autoId); startAuto(); }
+  startAuto();
+
+  // Touch / swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { goTo(dx < 0 ? current + 1 : current - 1); resetAuto(); }
+  });
+})();
+
+/* ── BOOKING MODAL ── */
+function openModal() {
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('modalBackdrop')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function submitForm(e) {
+  e.preventDefault();
+  const success = document.getElementById('formSuccess');
+  success.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { success.style.display = 'none'; closeModal(); }, 3000);
+}
+
+/* ── NAV ACTIVE LINK on scroll ── */
+const sections = document.querySelectorAll('section[id], div[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+const scrollSpy = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navAs.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + entry.target.id
+          ? '#fff' : '';
+      });
+    }
+  });
+}, { threshold: 0.45 });
+sections.forEach(s => scrollSpy.observe(s));
+</script>
 </body>
 </html>
